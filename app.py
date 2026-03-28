@@ -5,6 +5,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from sqlalchemy import text
 
 from database import create_db_engine
+from schema import init_schema
 
 
 app = Flask(__name__)
@@ -17,6 +18,7 @@ if os.environ.get("FLASK_ENV") == "production":
     app.config["SESSION_COOKIE_SECURE"] = True
 
 engine = create_db_engine()
+init_schema(engine)
 
 
 def hash_password(password):
