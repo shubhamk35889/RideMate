@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — RideMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Ride<span>Mate</span></a>
+  <div class="nav-links">
+    <a href="/search">Find Rides</a>
+    <a href="/offer_ride" class="btn btn-primary btn-sm">+ Offer Ride</a>
+    <a href="/logout">Logout</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash flash-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div style="margin-bottom:2rem;">
+    <div class="page-title">Hey, {{ session['user_name'].split()[0] }} 👋</div>
+    <div class="page-sub">Manage your rides and bookings</div>
+  </div>
+
+  <!-- OFFERED RIDES -->
+  <div class="section-header">
+    <div class="section-title">🏍️ Rides You've Offered</div>
+    <a href="/offer_ride" class="btn btn-outline btn-sm">+ New Ride</a>
+  </div>
+
+  {% if offered %}
+    {% for ride in offered %}
+    <div class="card fade-in">
+      <div class="ride-card">
+        <div>
+          <div class="ride-route">
+            {{ ride['from_location'] }}
+            <span class="route-arrow">→</span>
+            {{ ride['to_location'] }}
+          </div>
+          <div class="ride-meta">
+            <span class="meta-item">📅 {{ ride['date'] }}</span>
+            <span class="meta-item">🕐 {{ ride['time'] }}</span>
+            <span class="meta-item">🏍️ {{ ride['bike_type'] }}</span>
+            {% if ride['helmet'] %}
+              <span class="badge badge-green">⛑️ Helmet Available</span>
+            {% endif %}
+            <span class="badge badge-grey">{{ ride['seats'] }} seat(s) left</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="price-tag">₹{{ ride['price'] }}</div>
+          <div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">per person</div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty">
+      <div class="empty-icon">🛣️</div>
+      <h3>No rides offered yet</h3>
+      <p>Share your route and help someone commute!</p>
+      <a href="/offer_ride" class="btn btn-primary" style="margin-top:1rem;">Offer a Ride</a>
+    </div>
+  {% endif %}
+
+  <!-- BOOKED RIDES -->
+  <div class="section-header" style="margin-top:3rem;">
+    <div class="section-title">🎫 Your Bookings</div>
+  </div>
+
+  {% if booked %}
+    {% for ride in booked %}
+    <div class="card fade-in">
+      <div class="ride-card">
+        <div>
+          <div class="ride-route">
+            {{ ride['from_location'] }}
+            <span class="route-arrow">→</span>
+            {{ ride['to_location'] }}
+          </div>
+          <div class="ride-meta">
+            <span class="meta-item">📅 {{ ride['date'] }}</span>
+            <span class="meta-item">🕐 {{ ride['time'] }}</span>
+            <div class="rider-info">
+              <div class="rider-avatar">{{ ride['rider_name'][0].upper() }}</div>
+              <span style="font-size:0.85rem; color:var(--muted);">{{ ride['rider_name'] }}</span>
+            </div>
+            {% if ride['helmet'] %}
+              <span class="badge badge-green">⛑️ Helmet Provided</span>
+            {% endif %}
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="price-tag">₹{{ ride['price'] }}</div>
+          <a href="/cancel_booking/{{ ride['booking_id'] }}"
+             class="btn btn-danger btn-sm"
+             style="margin-top:0.8rem; display:inline-block;"
+             onclick="return confirm('Cancel this booking?')">
+            Cancel
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty">
+      <div class="empty-icon">🔍</div>
+      <h3>No bookings yet</h3>
+      <p>Find rides heading your way!</p>
+      <a href="/search" class="btn btn-primary" style="margin-top:1rem;">Search Rides</a>
+    </div>
+  {% endif %}
+
+</div>
+
+</body>
+</html>

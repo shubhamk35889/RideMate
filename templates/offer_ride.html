@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offer a Ride — RideMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Ride<span>Mate</span></a>
+  <div class="nav-links">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+  </div>
+</nav>
+
+<div class="container" style="display:flex; align-items:center; justify-content:center; min-height:80vh;">
+  <div class="form-card fade-in" style="width:100%; max-width:580px;">
+
+    <div class="form-title">Offer a Bike Ride 🏍️</div>
+    <div class="form-sub">Share your route and help someone commute</div>
+
+    <form method="POST">
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>From</label>
+          <input type="text" name="from" placeholder="e.g. Gurugram" required>
+        </div>
+        <div class="form-group">
+          <label>To</label>
+          <input type="text" name="to" placeholder="e.g. Connaught Place" required>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" name="date" required>
+        </div>
+        <div class="form-group">
+          <label>Time</label>
+          <input type="time" name="time" required>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Price per Person (₹)</label>
+          <input type="number" name="price" placeholder="100" min="0" required>
+        </div>
+        <div class="form-group">
+          <label>Available Seats</label>
+          <select name="seats">
+            <option value="1">1 seat</option>
+            <option value="2">2 seats</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Bike Type</label>
+        <select name="bike_type">
+          <option value="Any">Any / Not specified</option>
+          <option value="Activa / Scooter">Activa / Scooter</option>
+          <option value="Sports Bike">Sports Bike</option>
+          <option value="Royal Enfield">Royal Enfield</option>
+          <option value="Pulsar / Commuter">Pulsar / Commuter</option>
+          <option value="Electric Bike">Electric Bike</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-row">
+          <input type="checkbox" name="helmet" value="1">
+          <span>⛑️ Extra helmet available for passenger</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">
+        Post Ride
+      </button>
+
+    </form>
+
+    <div class="form-footer">
+      <a href="/dashboard">← Back to Dashboard</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

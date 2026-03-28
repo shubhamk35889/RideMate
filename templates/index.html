@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RideMate — Bike Rides, Simplified</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Ride<span>Mate</span></a>
+  <div class="nav-links">
+    <a href="/search">Find a Ride</a>
+    <a href="/login">Login</a>
+    <a href="/register" class="btn btn-primary btn-sm">Get Started</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-content fade-in">
+    <div class="hero-badge">🏍️ India's Bike Ride Platform</div>
+    <h1>Share the Road,<span class="highlight">Split the Cost.</span></h1>
+    <p>Connect with bike riders heading your way. Safe, affordable, and eco-friendly commuting — powered by the community.</p>
+    <div class="hero-buttons">
+      <a href="/register" class="btn btn-primary">Offer or Find a Ride</a>
+      <a href="/search" class="btn btn-outline">Browse Rides</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="bike-circle">
+      <span class="bike-emoji">🏍️</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card fade-in">
+    <div class="num">100%</div>
+    <div class="label">Bike Rides Only</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="num">₹0</div>
+    <div class="label">Platform Fee</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="num">Fast</div>
+    <div class="label">Beat City Traffic</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="num">Safe</div>
+    <div class="label">Verified Riders</div>
+  </div>
+</div>
+
+</body>
+</html>
