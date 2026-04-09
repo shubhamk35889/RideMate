@@ -4,11 +4,6 @@
   "env": {
     "FLASK_ENV": "production"
   },
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.11"
-    }
-  },
   "routes": [
     {
       "src": "/static/(.*)",
