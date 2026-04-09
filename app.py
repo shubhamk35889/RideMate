@@ -17,8 +17,12 @@ app.config.update(
 if os.environ.get("FLASK_ENV") == "production":
     app.config["SESSION_COOKIE_SECURE"] = True
 
-engine = create_db_engine()
-init_schema(engine)
+try:
+    engine = create_db_engine()
+    init_schema(engine)
+except Exception as e:
+    print(f"Warning: Database initialization failed: {e}")
+    engine = None
 
 
 def hash_password(password):

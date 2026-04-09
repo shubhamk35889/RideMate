@@ -1,6 +1,5 @@
 {
   "buildCommand": "pip install -r requirements.txt",
-  "outputDirectory": ".",
   "env": {
     "FLASK_ENV": "production"
   },
